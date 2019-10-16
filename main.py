@@ -22,7 +22,7 @@ def image_name(name):
 
 
 def create_miniature(filename):
-    Image.open(IMAGE_FOLDER + filename).resize((100, 100), Image.ADAPTIVE).save(MINIATURES_FOLDER + filename)
+    Image.open(IMAGE_FOLDER + filename).resize((500, 500), Image.ADAPTIVE).save(MINIATURES_FOLDER + filename)
 
 
 @app.route('/show/images/')
@@ -42,7 +42,7 @@ def add_image():
 
 
 @app.route('/open/<directory>/<filename>')
-def open_image(directory, filename):
+def open_file(directory, filename):
     return send_from_directory(directory, filename)
 
 
