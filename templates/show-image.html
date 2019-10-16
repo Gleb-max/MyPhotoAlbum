@@ -5,9 +5,9 @@
     <title>Альбом</title>
 </head>
 <body>
-    {% for name in names %}
-    <a href="{{url_for('open_image', filename=name)}}"><img src="{{url_for('open_image', filename=name)}}"
-                                                            width="100" height="100" class="lazy"></a>
+{% for name in names %}
+<a href="{{url_for('open_image', filename=name, directory='Images')}}">
+    <img src="{{url_for('open_image', filename=name, directory='Miniatures')}}" class="lazy"></a>
 {% endfor %}
 </body>
 </html>
