@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Альбом</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('open_file', filename='style.css', directory='Styles')}}">
+    <script src="{{url_for('open_file', filename='lazy-loading.js', directory='Scripts')}}"></script>
 </head>
 <body>
 {% for name in names %}
-<a href="{{url_for('open_image', filename=name, directory='Images')}}">
-    <img src="{{url_for('open_image', filename=name, directory='Miniatures')}}" class="lazy"></a>
+<a href="{{url_for('open_file', filename=name, directory='Images')}}">
+    <img class="lazy cards" data-src="{{url_for('open_file', filename=name, directory='Miniatures')}}"></a>
 {% endfor %}
 </body>
 </html>
