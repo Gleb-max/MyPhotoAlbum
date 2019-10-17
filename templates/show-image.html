@@ -7,9 +7,18 @@
     <script src="{{url_for('open_file', filename='lazy-loading.js', directory='Scripts')}}"></script>
 </head>
 <body>
+<section id="fancy" class="card-container">
 {% for name in names %}
-<a href="{{url_for('open_file', filename=name, directory='Images')}}">
+    <article class="card">
+        <header class="card__title">
+            <h3>{{name}}</h3>
+        </header>
+        <figure class="card__thumbnail">
+            <a href="{{url_for('open_file', filename=name, directory='Images')}}">
     <img class="lazy cards" data-src="{{url_for('open_file', filename=name, directory='Miniatures')}}"></a>
+        </figure>
+    </article>
 {% endfor %}
+</section>
 </body>
 </html>
