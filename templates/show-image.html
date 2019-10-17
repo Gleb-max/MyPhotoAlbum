@@ -2,20 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Альбом</title>
-    <link rel="stylesheet" type="text/css" href="{{url_for('open_file', filename='style.css', directory='Styles')}}">
-    <script src="{{url_for('open_file', filename='lazy-loading.js', directory='Scripts')}}"></script>
+    <title>Gallery</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('open_file', filename='style.css', directory='css')}}">
+    <script src="{{url_for('open_file', filename='lazy-loading.js', directory='js')}}"></script>
+    <script src="{{url_for('open_file', filename='gallery.js', directory='js')}}"></script>
+	<script src="{{url_for('open_file', filename='dialog.js', directory='js')}}"></script>
 </head>
-<body>
+<body onload="gallery()">
 <section id="fancy" class="card-container">
 {% for name in names %}
     <article class="card">
         <header class="card__title">
             <h3>{{name}}</h3>
         </header>
-        <figure class="card__thumbnail">
-            <a href="{{url_for('open_file', filename=name, directory='Images')}}">
-    <img class="lazy cards" data-src="{{url_for('open_file', filename=name, directory='Miniatures')}}"></a>
+        <figure id="gallery" class="card__thumbnail">
+            <a title="{{name}}" class="img" href="{{url_for('open_file', filename=name, directory='img')}}">
+    <img class="lazy cards" data-src="{{url_for('open_file', filename=name, directory='min')}}"></a>
         </figure>
     </article>
 {% endfor %}
