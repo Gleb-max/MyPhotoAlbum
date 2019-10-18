@@ -14,8 +14,12 @@ MINIATURES_FOLDER = 'min/'
 def image_name(name):
     global INDEX
     name = secure_filename(name)
-    if len(name.split('.')) == 1:
+    data = name.split('.')
+    if len(data) == 1:
         name = f'{INDEX}.{name}'
+        INDEX += 1
+    elif len(data) == 2 and data[0].isdigit():
+        name = f'{INDEX}.{data[1]}'
         INDEX += 1
     return name
 
@@ -24,20 +28,14 @@ def create_miniature(filename):
     Image.open(IMAGE_FOLDER + filename).resize((500, 500), Image.ADAPTIVE).save(MINIATURES_FOLDER + filename)
 
 
-@app.route('/gallery/')
+@app.route('/gallery/', methods=['GET', 'POST'])
 def show_images():
-    return render_template('show-image.html', names=os.listdir('min'))
-
-
-@app.route('/add/', methods=['GET', 'POST'])
-def add_image():
     if request.method == 'POST':
         file = request.files['photo']
         filename = image_name(file.filename)
         file.save(IMAGE_FOLDER + filename)
         Thread(target=lambda: create_miniature(filename)).start()
-        return render_template('show-image.html', names=os.listdir('min'))
-    return render_template('upload-image.html')
+    return render_template('show-image.html', names=os.listdir('min'))
 
 
 @app.route('/open/<directory>/<filename>')
