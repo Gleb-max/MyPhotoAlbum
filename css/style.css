@@ -106,6 +106,7 @@ header {
     height:10%;
     cursor:pointer;
     background:url(../dialog/input-file.png) no-repeat;
+    background-size:cover;
 }
 .input-cap{
     opacity:0;
