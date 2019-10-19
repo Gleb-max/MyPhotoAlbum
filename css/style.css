@@ -38,28 +38,28 @@ img {
     align:center;
 }
 .grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap:20px;
-  align-items:stretch;
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap:20px;
+    align-items:stretch;
 }
 .grid > article {
-  border:1px solid #ccc;
-  box-shadow:2px 2px 6px 0px  rgba(0,0,0,0.3);
+    border:1px solid #ccc;
+    box-shadow:2px 2px 6px 0px  rgba(0,0,0,0.3);
 }
 .grid > article img {
-  max-width:100%;
+    max-width:100%;
 }
 .text {
-  padding:0 20px 20px;
+    padding:0 20px 20px;
 }
 .text > button {
-  background:gray;
-  border:0;
-  color:white;
-  padding:10px;
-  width:100%;
-  }
+    background:gray;
+    border:0;
+    color:white;
+    padding:10px;
+    width:100%;
+}
 .card-container {
     display:grid;
     grid-template-columns:repeat(auto-fit, 16%);
@@ -106,7 +106,9 @@ header {
     height:10%;
     cursor:pointer;
     background:url(../dialog/input-file.png) no-repeat;
-    background-size:cover;
+    transform:scale(1);
+    image-rendering:pixelated;
+    -moz-image-rendering:crisp-edges;
 }
 .input-cap{
     opacity:0;
