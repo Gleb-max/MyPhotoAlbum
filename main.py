@@ -30,9 +30,9 @@ def create_miniature(filename):     # создание миниатюры
 
 @app.route('/gallery/', methods=['GET', 'POST'])    # единственная страница (на ней и галерея и загрузка)
 def show_images():
-    global INDEX
-    INDEX += 1
     if request.method == 'POST':
+        global INDEX
+        INDEX += 1
         file = request.files['photo']
         #filename = image_name(file.filename)
         filename = str(INDEX) + ".png"
