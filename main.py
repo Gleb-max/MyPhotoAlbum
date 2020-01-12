@@ -6,7 +6,7 @@ import os
 
 
 app = Flask(__name__)
-INDEX = 1
+INDEX = 0
 IMAGE_FOLDER = 'img/'
 MINIATURES_FOLDER = 'min/'
 
@@ -30,9 +30,12 @@ def create_miniature(filename):     # создание миниатюры
 
 @app.route('/gallery/', methods=['GET', 'POST'])    # единственная страница (на ней и галерея и загрузка)
 def show_images():
+    global INDEX
+    INDEX += 1
     if request.method == 'POST':
         file = request.files['photo']
-        filename = image_name(file.filename)
+        #filename = image_name(file.filename)
+        filename = str(INDEX) + ".png"
         file.save(IMAGE_FOLDER + filename)
         Thread(target=lambda: create_miniature(filename)).start()   # создание миниатюры в отдельном потоке
     return render_template('show-image.html', names=os.listdir('min'))  # для ускорения ответа
