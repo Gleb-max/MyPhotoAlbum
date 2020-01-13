@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, send_from_directory
 from werkzeug.utils import secure_filename
 from threading import Thread
 from PIL import Image
-import os
+import os, shutil
 
 
 app = Flask(__name__)
@@ -44,6 +44,30 @@ def show_images():
 @app.route('/open/<directory>/<filename>')   # открытие файла, указанного в пути <directory>/<filename>
 def open_file(directory, filename):
     return send_from_directory(directory, filename)
+
+
+@app.route("/delete/")
+def delete_all():
+    folder = 'min'
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            pass
+    folder = 'img'
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            pass
 
 
 if __name__ == '__main__':
